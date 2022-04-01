@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 '''
 連動網址：
-https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=Vw3MYEI0iVnwP0wcJ1V5QS&redirect_uri=https://ca26d27f801e.ngrok.io&scope=notify&state=NO_STATE
+https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=Line設定取得&redirect_uri=本地端設定&scope=notify&state=NO_STATE
 '''
 
 
@@ -13,9 +13,9 @@ def getNotifyToken(AuthorizeCode):
     body = {
         "grant_type": "authorization_code",
         "code": AuthorizeCode,
-        "redirect_uri": 'https://20add4fff637.ngrok.io',
-        "client_id": 'Vw3MYEI0iVnwP0wcJ1V5QS',
-        "client_secret": 'NhiQT1xsC6qiAkVGhppTHHaTI1pCZ1zt9SPZKq0y862'
+        "redirect_uri": '本地端設定',
+        "client_id": 'Line設定取得',
+        "client_secret": 'Line設定取得'
     }
     r = requests.post("https://notify-bot.line.me/oauth/token", data=body)
     return r.json()["access_token"]
@@ -52,7 +52,7 @@ def OutputText():
     if request.method == 'POST':
         InputText = request.form["Text"]
         InputText = str(InputText)
-        lineNotifyMessage("3fdkIpJ7QJXwBOAV1pezrQkd8bHytU3HikFvehQGjAW", InputText)
+        lineNotifyMessage("Line設定取得", InputText)
         return InputText
 
 
